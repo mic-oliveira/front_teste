@@ -1,10 +1,10 @@
 import {
   Directive, HostBinding, Inject, Input, OnInit, OnDestroy, Output, EventEmitter, AfterViewInit
 } from '@angular/core';
-import { SidebarDirective } from "./sidebar.directive";
+import { SidebarDirective } from './sidebar.directive';
 
 @Directive({
-  selector: "[appSidebarlink]"
+  selector: '[appSidebarlink]'
 })
 export class SidebarLinkDirective implements OnInit, OnDestroy {
 
@@ -19,6 +19,12 @@ export class SidebarLinkDirective implements OnInit, OnDestroy {
 
   @Input()
   public path: string;
+
+  protected _open: boolean;
+  protected _sidebarGroupActive: boolean;
+  protected _navCollapsedOpen: boolean;
+
+  protected sideNav: SidebarDirective;
 
   @HostBinding('class.open')
   @Input()
@@ -47,12 +53,6 @@ export class SidebarLinkDirective implements OnInit, OnDestroy {
     this._navCollapsedOpen = value;
   }
 
-  protected _open: boolean;
-  protected _sidebarGroupActive: boolean;
-  protected _navCollapsedOpen: boolean;
-
-  protected sideNav: SidebarDirective;
-
   public constructor(
     @Inject(SidebarDirective) sideNav: SidebarDirective) {
     this.sideNav = sideNav;
@@ -65,13 +65,13 @@ export class SidebarLinkDirective implements OnInit, OnDestroy {
   public ngOnDestroy(): any {
   }
 
-  //when side menu (vertical menu) item gets clicked
+  // when side menu (vertical menu) item gets clicked
   public toggle(): any {
     this.open = !this.open;
-    if(this.open) {
+    if (this.open) {
       this.sideNav.closeOtherLinks(this);
     }
-    if (!this.open && this.level.toString() === "1" && this.hasSub) {
+    if (!this.open && this.level.toString() === '1' && this.hasSub) {
       this.sidebarGroupActive = false;
     }
   }

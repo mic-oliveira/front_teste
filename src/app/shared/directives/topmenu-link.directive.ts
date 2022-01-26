@@ -2,11 +2,11 @@ import {
   Directive, HostBinding, Inject, Input, OnInit, OnDestroy, Output, EventEmitter
 } from '@angular/core';
 
-import { TopMenuDirective } from "./topmenu.directive";
+import { TopMenuDirective } from './topmenu.directive';
 
 
 @Directive({
-  selector: "[appTopMenulink]"
+  selector: '[appTopMenulink]'
 })
 export class TopMenuLinkDirective implements OnInit, OnDestroy {
 
@@ -15,6 +15,10 @@ export class TopMenuLinkDirective implements OnInit, OnDestroy {
 
   @Input()
   public level: number;
+
+  protected _show: boolean;
+
+  protected topNav: TopMenuDirective;
 
   @HostBinding('class.show')
   @Input()
@@ -27,10 +31,6 @@ export class TopMenuLinkDirective implements OnInit, OnDestroy {
       this.topNav.closeOtherLinks(this);
     }
   }
-
-  protected _show: boolean;
-
-  protected topNav: TopMenuDirective;
 
   public constructor(
     @Inject(TopMenuDirective) topNav: TopMenuDirective) {

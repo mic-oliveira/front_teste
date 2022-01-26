@@ -9,7 +9,7 @@ export class SidebarDropdownDirective implements OnInit {
   protected navlinks: Array<SidebarLinkDirective> = [];
 
     public ngOnInit(): any {
-      //write your code here!
+      // write your code here!
     }
 
     constructor( private router: Router) {

@@ -23,7 +23,7 @@ export class ContentLayoutComponent implements OnInit, OnDestroy {
     private customizerService: CustomizerService
   ) {
     this.config = this.configService.templateConf;
-    this.renderer.addClass(this.document.body, "auth-page");
+    this.renderer.addClass(this.document.body, 'auth-page');
   }
 
   ngOnInit() {
@@ -41,25 +41,23 @@ export class ContentLayoutComponent implements OnInit, OnDestroy {
 
     this.removeTransparentBGClasses();
 
-    if (this.config.layout.variant === "Light") {
-      this.renderer.removeClass(this.document.body, "layout-dark");
-      this.renderer.removeClass(this.document.body, "layout-transparent");
-    }
-    else if (this.config.layout.variant === "Dark") {
-      this.renderer.removeClass(this.document.body, "layout-transparent");
-      this.renderer.addClass(this.document.body, "layout-dark");
-    }
-    else if (this.config.layout.variant === "Transparent") {
-      this.renderer.addClass(this.document.body, "layout-dark");
-      this.renderer.addClass(this.document.body, "layout-transparent");
+    if (this.config.layout.variant === 'Light') {
+      this.renderer.removeClass(this.document.body, 'layout-dark');
+      this.renderer.removeClass(this.document.body, 'layout-transparent');
+    } else if (this.config.layout.variant === 'Dark') {
+      this.renderer.removeClass(this.document.body, 'layout-transparent');
+      this.renderer.addClass(this.document.body, 'layout-dark');
+    } else if (this.config.layout.variant === 'Transparent') {
+      this.renderer.addClass(this.document.body, 'layout-dark');
+      this.renderer.addClass(this.document.body, 'layout-transparent');
       this.renderer.addClass(this.document.body, this.config.layout.sidebar.backgroundColor);
     }
 
 
-    this.renderer.removeClass(this.document.body, "menu-expanded");
-    this.renderer.removeClass(this.document.body, "navbar-static");
-    this.renderer.removeClass(this.document.body, "menu-open");
-    this.renderer.addClass(this.document.body, "blank-page");
+    this.renderer.removeClass(this.document.body, 'menu-expanded');
+    this.renderer.removeClass(this.document.body, 'navbar-static');
+    this.renderer.removeClass(this.document.body, 'menu-open');
+    this.renderer.addClass(this.document.body, 'blank-page');
 
 
   }
@@ -75,7 +73,7 @@ export class ContentLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.renderer.removeClass(this.document.body, "auth-page");
+    this.renderer.removeClass(this.document.body, 'auth-page');
     if (this.layoutSub) {
       this.layoutSub.unsubscribe();
     }

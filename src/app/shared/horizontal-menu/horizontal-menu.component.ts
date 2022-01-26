@@ -15,8 +15,8 @@ export class HorizontalMenuComponent implements OnInit, AfterViewInit, OnDestroy
 
   public menuItems: any[];
   public config: any = {};
-  level: number = 0;
-  transparentBGClass = "";
+  level = 0;
+  transparentBGClass = '';
   menuPosition = 'Side';
 
   layoutSub: Subscription;
@@ -46,16 +46,15 @@ export class HorizontalMenuComponent implements OnInit, AfterViewInit, OnDestroy
 
   loadLayout() {
 
-    if (this.config.layout.menuPosition && this.config.layout.menuPosition.toString().trim() != "") {
+    if (this.config.layout.menuPosition && this.config.layout.menuPosition.toString().trim() != '') {
       this.menuPosition = this.config.layout.menuPosition;
     }
 
 
-    if (this.config.layout.variant === "Transparent") {
+    if (this.config.layout.variant === 'Transparent') {
       this.transparentBGClass = this.config.layout.sidebar.backgroundColor;
-    }
-    else {
-      this.transparentBGClass = "";
+    } else {
+      this.transparentBGClass = '';
     }
 
   }

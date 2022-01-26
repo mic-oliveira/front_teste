@@ -9,7 +9,7 @@ export class TopMenuDropdownDirective implements OnInit {
   protected navlinks: Array<TopMenuLinkDirective> = [];
 
     public ngOnInit(): any {
-      //write your code here!
+      // write your code here!
     }
 
     constructor( private router: Router) {

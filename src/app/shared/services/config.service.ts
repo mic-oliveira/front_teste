@@ -1,8 +1,7 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-export interface ITemplateConfig
-{
+export interface ITemplateConfig {
     layout: {
         variant: string;                   // options: Dark, Light & Transparent
         menuPosition: string;              // options: Side, Top (Note: Use 'Side' for Vertical Menu & 'Top' for Horizontal Menu )
@@ -12,7 +11,7 @@ export interface ITemplateConfig
         navbar: {
           type: string;                     // options: Static & Fixed
         }
-        sidebar: { //Options for Vertical Side menu
+        sidebar: { // Options for Vertical Side menu
             collapsed: boolean;             // options: true, false
             size: string;                   // Options: 'sidebar-lg', 'sidebar-md', 'sidebar-sm'
             backgroundColor: string;        // Options: 'black', 'pomegranate', 'king-yna', 'ibiza-sunset', 'flickr', 'purple-bliss', 'man-of-steel', 'purple-love'
@@ -28,7 +27,7 @@ export interface ITemplateConfig
 
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ConfigService {
   public templateConf: ITemplateConfig = this.setConfigValue();
@@ -43,8 +42,8 @@ export class ConfigService {
   setConfigValue() {
     return this.templateConf = {
       layout: {
-        variant: "Light",
-        menuPosition: "Side",
+        variant: 'Light',
+        menuPosition: 'Side',
         customizer: {
           hidden: true
         },
@@ -53,10 +52,10 @@ export class ConfigService {
         },
         sidebar: {
           collapsed: false,
-          size: "sidebar-md",
-          backgroundColor: "man-of-steel",
+          size: 'sidebar-md',
+          backgroundColor: 'man-of-steel',
           backgroundImage: true,
-          backgroundImageURL: "assets/img/sidebar-bg/01.jpg"
+          backgroundImageURL: 'assets/img/sidebar-bg/01.jpg'
         }
       }
     };

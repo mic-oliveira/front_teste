@@ -7,24 +7,26 @@ import {
   ViewChild,
   ElementRef,
   Renderer2
-} from "@angular/core";
-import { ConfigService } from "../services/config.service";
-import { Subscription } from "rxjs";
+} from '@angular/core';
+import { ConfigService } from '../services/config.service';
+import { Subscription } from 'rxjs';
 import { CustomizerService } from '../services/customizer.service';
 
 @Component({
-  selector: "app-customizer",
-  templateUrl: "./customizer.component.html",
-  styleUrls: ["./customizer.component.scss"]
+  selector: 'app-customizer',
+  templateUrl: './customizer.component.html',
+  styleUrls: ['./customizer.component.scss']
 })
 export class CustomizerComponent implements OnInit, OnDestroy {
-  @ViewChild("customizer") customizer: ElementRef;
+  @ViewChild('customizer') customizer: ElementRef;
 
   size: string;
-  isBgImageDisplay: boolean = true;
+  isBgImageDisplay = true;
   isOpen = true;
   public config: any = {};
   layoutSub: Subscription;
+
+  @Output() directionEvent = new EventEmitter<Object>();
 
   constructor(
     private renderer: Renderer2,
@@ -40,8 +42,6 @@ export class CustomizerComponent implements OnInit, OnDestroy {
     }
   }
 
-  @Output() directionEvent = new EventEmitter<Object>();
-
   ngOnInit() {
 
   }
@@ -54,16 +54,16 @@ export class CustomizerComponent implements OnInit, OnDestroy {
 
   toggleCustomizer() {
     if (this.isOpen) {
-      this.renderer.removeClass(this.customizer.nativeElement, "open");
+      this.renderer.removeClass(this.customizer.nativeElement, 'open');
       this.isOpen = false;
     } else {
-      this.renderer.addClass(this.customizer.nativeElement, "open");
+      this.renderer.addClass(this.customizer.nativeElement, 'open');
       this.isOpen = true;
     }
   }
 
   closeCustomizer() {
-    this.renderer.removeClass(this.customizer.nativeElement, "open");
+    this.renderer.removeClass(this.customizer.nativeElement, 'open');
     this.isOpen = false;
   }
 
@@ -73,7 +73,7 @@ export class CustomizerComponent implements OnInit, OnDestroy {
     } else {
       this.isBgImageDisplay = false;
     }
-    //emit event to FUll Layout
+    // emit event to FUll Layout
     this.customizerService.bgImageDisplay(e);
   }
 

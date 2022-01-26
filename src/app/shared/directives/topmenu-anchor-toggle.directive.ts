@@ -1,9 +1,9 @@
 import { Directive, HostListener, Inject } from '@angular/core';
 
-import { TopMenuLinkDirective } from "./topmenu-link.directive";
+import { TopMenuLinkDirective } from './topmenu-link.directive';
 
 @Directive({
-  selector: "[appTopMenuAnchorToggle]"
+  selector: '[appTopMenuAnchorToggle]'
 })
 export class TopMenuAnchorToggleDirective {
   protected navlink: TopMenuLinkDirective;
@@ -19,7 +19,7 @@ export class TopMenuAnchorToggleDirective {
   //   this.navlink.toggle();
   // }
 
-  @HostListener("mouseenter", ["$event"])
+  @HostListener('mouseenter', ['$event'])
   onMouseOver(e: any) {
     this.navlink.openDropdown();
 

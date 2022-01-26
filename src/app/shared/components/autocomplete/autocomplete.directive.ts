@@ -68,7 +68,7 @@ export class AutocompleteDirective implements OnInit {
 
 
   private close() {
-    if(this.overlayRef) {
+    if (this.overlayRef) {
       this.overlayRef.detach();
     }
 

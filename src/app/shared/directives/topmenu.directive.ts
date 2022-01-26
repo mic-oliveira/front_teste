@@ -19,13 +19,13 @@ export class TopMenuDirective implements OnInit {
 
   public closeOtherLinks(openLink: TopMenuLinkDirective): void {
     this.navlinks.forEach((link: TopMenuLinkDirective) => {
-      if (link != openLink && (openLink.level.toString() === "1" || link.level === openLink.level)) {
+      if (link != openLink && (openLink.level.toString() === '1' || link.level === openLink.level)) {
         link.show = false;
       }
     });
   }
 
-  @HostListener("mouseleave", ["$event"])
+  @HostListener('mouseleave', ['$event'])
   onMouseOut(e: any) {
     this.navlinks.forEach((link: TopMenuLinkDirective) => {
       link.show = false;

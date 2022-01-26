@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 
 
-export const customAnimations = [	    
+export const customAnimations = [
     trigger('slideInOut', [
       state('1', style({ height: '*' })),
       state('0', style({ height: '0px' })),

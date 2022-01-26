@@ -8,15 +8,6 @@ import { Router } from '@angular/router';
 @Directive({ selector: '[appSidebar]' })
 export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
 
-  @HostBinding("class.expanded")
-  @Input()
-  get navExpanded(): boolean {
-    return this._navExpanded;
-  }
-  set navExpanded(value: boolean) {
-    this._navExpanded = value;
-  }
-
   protected navlinks: Array<SidebarLinkDirective> = [];
   layoutSub: Subscription;
   public config: any = {};
@@ -24,6 +15,15 @@ export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
   sidebarExpanded = true;
   protected _navExpanded: boolean;
   protected innerWidth: any;
+
+  @HostBinding('class.expanded')
+  @Input()
+  get navExpanded(): boolean {
+    return this._navExpanded;
+  }
+  set navExpanded(value: boolean) {
+    this._navExpanded = value;
+  }
 
   constructor(private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService, private layoutService: LayoutService) {
     this.config = this.configService.templateConf;
@@ -47,39 +47,35 @@ export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  //load layout when changes in the config
+  // load layout when changes in the config
   loadLayout() {
     this.sidebarExpanded = !this.config.layout.sidebar.collapsed;
     if (this.config.layout.sidebar.collapsed && !this.mouseEnter) {
       this.setSidebarGroupActiveCollapsed();
       this.navExpanded = false;
-    }
-    else {
+    } else {
       this.setSidebarGroupActive();
       this.navExpanded = true;
     }
   }
 
-  //add menu links to the link list
+  // add menu links to the link list
   public addLink(link: SidebarLinkDirective): void {
     this.navlinks.push(link);
   }
 
-  //close all other menu items other than active one
+  // close all other menu items other than active one
   public closeOtherLinks(openLink: SidebarLinkDirective): void {
     this.navlinks.forEach((link: SidebarLinkDirective) => {
-      if (link != openLink && (openLink.level.toString() === "1" || link.level === openLink.level)) {
+      if (link != openLink && (openLink.level.toString() === '1' || link.level === openLink.level)) {
         link.open = false;
         link.sidebarGroupActive = false;
-      }
-      else if (link === openLink && (openLink.level.toString() === "1") && link.hasSub === true) {
+      } else if (link === openLink && (openLink.level.toString() === '1') && link.hasSub === true) {
         link.sidebarGroupActive = true;
-      }
-      else if (link === openLink && (openLink.level.toString() === "1") && link.hasSub === false) {
+      } else if (link === openLink && (openLink.level.toString() === '1') && link.hasSub === false) {
         link.sidebarGroupActive = false;
         link.open = false;
-      }
-      else if (link === openLink && openLink.level.toString() != "1" && link.hasSub === false) {
+      } else if (link === openLink && openLink.level.toString() != '1' && link.hasSub === false) {
         link.open = false;
         link.sidebarGroupActive = false;
         return;
@@ -97,9 +93,9 @@ export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
         link.sidebarGroupActive = false;
         link.navCollapsedOpen = false;
       });
-      let matched = this.navlinks.find(link => link.path === this.router.url);
+      const matched = this.navlinks.find(link => link.path === this.router.url);
       if (matched) {
-        let parent = this.navlinks.find(link => link.parent === matched.parent && link.level.toString() === "1" && link.hasSub === true);
+        const parent = this.navlinks.find(link => link.parent === matched.parent && link.level.toString() === '1' && link.hasSub === true);
         if (parent) {
           parent.sidebarGroupActive = true;
           parent.navCollapsedOpen = false;
@@ -118,9 +114,9 @@ export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
         link.sidebarGroupActive = false;
         link.navCollapsedOpen = false;
       });
-      let matched = this.navlinks.find(link => link.path === this.router.url);
+      const matched = this.navlinks.find(link => link.path === this.router.url);
       if (matched) {
-        let parent = this.navlinks.find(link => link.parent === matched.parent && link.level.toString() === "1" && link.hasSub === true);
+        const parent = this.navlinks.find(link => link.parent === matched.parent && link.level.toString() === '1' && link.hasSub === true);
         if (parent) {
           parent.sidebarGroupActive = true;
           parent.navCollapsedOpen = true;
@@ -131,7 +127,7 @@ export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // mouse enter event of side menu
-  @HostListener("mouseenter", ["$event"])
+  @HostListener('mouseenter', ['$event'])
   onMouseOver(e: any) {
     this.mouseEnter = true;
     if (this.config.layout.sidebar.collapsed) {
@@ -141,7 +137,7 @@ export class SidebarDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // mouse leave event of side menu
-  @HostListener("mouseleave", ["$event"])
+  @HostListener('mouseleave', ['$event'])
   onMouseOut(e: any) {
     this.mouseEnter = false;
     if (this.config.layout.sidebar.collapsed) {

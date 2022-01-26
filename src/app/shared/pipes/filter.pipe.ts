@@ -14,6 +14,6 @@ export class FilterPipe implements PipeTransform {
         item[labelKey || 'name']
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) === true
-    ).slice(0,10);
+    ).slice(0, 10);
   }
 }
