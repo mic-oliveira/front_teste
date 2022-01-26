@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">{{title | translate}}</div>
+  </div>
+  <app-search-input class="col-12"></app-search-input>
+</div>
+<div class="row">
+  <div class="offset-md-9 col-md-1">
+    <div class="btn btn-outline-primary" [routerLink]="['./create']"><i class="ft-users"></i> </div>
+  </div>
+  <div class="offset-md-9 col-md-1">
+    <div class="btn btn-outline-primary" [routerLink]="['./edit']" [queryParams]="{id: 1}"><i class="ft-users"></i> </div>
+  </div>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>{{'Name' | translate}}</th>
+        <th>{{'Actions' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers | async; index as id">
+        <th scope="row">{{id + 1}}</th>
+        <td>{{customer.name}}</td>
+        <td><button class="btn btn-primary" [routerLink]="['edit']" [queryParams]="{id: customer.id}"><i class="ft-edit"></i> </button> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
