@@ -6,7 +6,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslatePipe, TranslateService} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -25,8 +25,10 @@ import { FullLayoutComponent } from './layouts/full/full-layout.component';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { WINDOW_PROVIDERS } from './shared/services/window.service';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
-let firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'YOUR_API_KEY', // YOUR_API_KEY
   authDomain: 'YOUR_AUTH_DOMAIN', // YOUR_AUTH_DOMAIN
   databaseURL: 'YOUR_DATABASE_URL', // YOUR_DATABASE_URL
@@ -71,7 +73,9 @@ export function createTranslateLoader(http: HttpClient) {
     AuthService,
     AuthGuard,
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
-    WINDOW_PROVIDERS
+    WINDOW_PROVIDERS,
+    TranslatePipe,
+    TranslateService
   ],
   bootstrap: [AppComponent]
 })

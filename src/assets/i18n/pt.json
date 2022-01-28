@@ -1,4 +1,5 @@
 {
+  "__menu": null,
   "Page": "Página",
   "Menu Levels": "Níveis de menu",
   "Second Level": "Segundo nível",
@@ -6,10 +7,17 @@
   "Third Level 1.1": "Terceiro nível 1.1",
   "Third Level 1.2": "Terceiro nível 1.2",
 
+  "_customer_module": null,
   "Customers": "Clientes",
   "customer": "cliente",
   "Search": "Pesquisar",
   "Type name or some document": "Digite o nome ou algum documento",
-
-  "Name": "Nome"
+  "Name": "Nome",
+  "Remove customer": "Remover cliente",
+  "Do you want remove customer permanently?": "Remover cliente permanentemente?",
+  "Confirm": "Confirmar",
+  "Cancel": "Cancelar",
+  "Save": "Salvar",
+  "Actions": "Ações",
+  "Birthdate": "Aniversário"
 }

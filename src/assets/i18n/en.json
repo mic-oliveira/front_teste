@@ -11,5 +11,9 @@
   "Search": "Search",
   "Type name or some document": "Type name or some document",
 
-  "Name": "Name"
+  "Name": "Name",
+  "Actions": "Actions",
+  "Cancel": "Cancel",
+  "Save": "Save",
+  "Birthdate": "Birthdate"
 }
