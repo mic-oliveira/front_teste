@@ -31,12 +31,7 @@
         <th style="vertical-align: middle;" scope="row">{{id + 1}}</th>
         <td style="vertical-align: middle;">{{customer.name}}</td>
         <td style="vertical-align: middle;" [ngSwitch]="customer.status">
-          <span *ngSwitchCase="'ACTIVE'" class="badge badge-pill badge-success">
-            {{customer.status}}
-          </span>
-          <span *ngSwitchCase="'SUSPENDED'" class="badge badge-pill badge-success">
-            {{customer.status}}
-          </span>
+          <app-status-badge [selectStatus]="customer.status"></app-status-badge>
         </td>
         <td>
           <button class="btn btn-info" [routerLink]="['edit']" [queryParams]="{id: customer.id}">

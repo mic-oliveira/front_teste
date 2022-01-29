@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CustomerFormComponent} from '../components/customer-form/customer-form.component';
 import {NgSelect2Module} from 'ng-select2';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {StatusBadgeComponent} from '../components/status-badge/status-badge.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
     ListCustomersComponent,
     FormCustomersComponent,
     SearchInputComponent,
-    CustomerFormComponent
+    CustomerFormComponent,
+    StatusBadgeComponent
   ],
   imports: [
     CommonModule,

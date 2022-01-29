@@ -1,0 +1,6 @@
+<ng-container [ngSwitch]="selectStatus">
+  <span *ngSwitchCase="'1'" class="badge badge-pill badge-success">{{'ACTIVE' | translate}}</span>
+  <span *ngSwitchCase="'2'" class="badge badge-pill badge-">{{'INACTIVE' | translate}}</span>
+  <span *ngSwitchCase="'3'" class="badge badge-pill badge-warning">{{'BLOCKED' | translate}}</span>
+  <span *ngSwitchCase="'4'" class="badge badge-pill badge-danger">{{'SUSPENDED' | translate}}</span>
+</ng-container>
