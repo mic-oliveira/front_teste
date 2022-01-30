@@ -27,6 +27,7 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 import { WINDOW_PROVIDERS } from './shared/services/window.service';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
 
 const firebaseConfig = {
   apiKey: 'YOUR_API_KEY', // YOUR_API_KEY

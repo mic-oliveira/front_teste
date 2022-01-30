@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
+import {PersonInterface} from '../../interfaces/person-interface';
 
 @Component({
   selector: 'app-customer-form',
@@ -7,7 +8,7 @@ import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angul
   styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnInit, AfterViewInit {
-  @Input() customer: any;
+  @Input() customer: PersonInterface;
   @Output() formValidators: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   customerForm;

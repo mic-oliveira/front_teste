@@ -11,16 +11,19 @@ import {CustomerFormComponent} from '../components/customer-form/customer-form.c
 import {NgSelect2Module} from 'ng-select2';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {StatusBadgeComponent} from '../components/status-badge/status-badge.component';
+import {AddressFormComponent} from '../components/address-form/address-form.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 @NgModule({
-  declarations: [
-    ListCustomersComponent,
-    FormCustomersComponent,
-    SearchInputComponent,
-    CustomerFormComponent,
-    StatusBadgeComponent
-  ],
+    declarations: [
+        ListCustomersComponent,
+        FormCustomersComponent,
+        SearchInputComponent,
+        CustomerFormComponent,
+        StatusBadgeComponent,
+        AddressFormComponent
+    ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
@@ -28,7 +31,8 @@ import {StatusBadgeComponent} from '../components/status-badge/status-badge.comp
     FormsModule,
     ReactiveFormsModule,
     NgSelect2Module,
-    NgSelectModule
+    NgSelectModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     DatePipe,

@@ -1,0 +1,26 @@
+<form>
+  <div class="row no-wrap">
+    <div class="col-12 col-md-4">
+      <label for="place">{{'Zipcode'}}</label>
+      <input name="Zipcode" id="Zipcode" type="text" [ngModel]="address.zipcode" mask="99999-999" (keyup)="searchZipcode($event.target.value)" class="form-control" />
+    </div>
+    <div class="col-12 col-md-8">
+      <label for="place">{{'Street'}}</label>
+      <input name="place" id="place" type="text" [ngModel]="address.public_place" class="form-control" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label for="number">{{'Number'}}</label>
+      <input name="number" id="number" type="text" [ngModel]="address.number" class="form-control" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label for="neighborhood">{{'Neighborhood'}}</label>
+      <input name="neighborhood" id="neighborhood" type="text" [ngModel]="address.neighborhood" class="form-control" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label for="city">{{'City'}}</label>
+      <input name="city" id="city" type="text" [ngModel]="address.city" class="form-control" />
+    </div>
+
+  </div>
+</form>
+

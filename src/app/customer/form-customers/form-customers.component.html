@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card-header">
         <div class="card-title">
-          <span class="h3">{{'Novo cliente' | translate}} <app-status-badge [selectStatus]="selectedStatus" #badgeComponent></app-status-badge></span>
+          <span class="h3">{{title | translate}} <app-status-badge [selectStatus]="selectedStatus" #badgeComponent></app-status-badge></span>
         </div>
       </div>
       <div class="card-body">
@@ -27,13 +27,27 @@
             >
             </ng-select>
           </div>
-          <div class="form-group col-12 col-md-4">
+          <div class="form-group col-12 col-md-2">
             <label>{{'Birthdate' | translate}}</label>
             <div class="input-group">
               <input name="birthdate" class="form-control" placeholder="yyyy-mm-dd" [ngModel]="customer.birthdate" type="date" required>
-
             </div>
           </div>
+          <div class="col-12">
+            <ngb-accordion [closeOthers]="true" activeIds="static-1">
+              <ngb-panel id="static-1" >
+                <ng-template ngbPanelTitle>
+                  <span class="bold">{{'Address' | translate}}</span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <app-address-form [address]="customer.addresses[0]" class="col-12 no-wrap"></app-address-form>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+        </div>
+        <div class="row">
+
         </div>
         <div class="row">
           <div class="form-group col-12">

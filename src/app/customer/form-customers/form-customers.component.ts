@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {CustomerService} from '../../dataService/customer.service';
 import {FormBuilder, FormGroup, NgForm} from '@angular/forms';
 import {SweetAlert} from '../../shared/data/sweet-alert';
+import {Customer} from '../../models/customer';
 
 @Component({
   selector: 'app-form-customers',
@@ -14,7 +15,7 @@ export class FormCustomersComponent implements OnInit {
   @ViewChild('customerForm') customerForm: NgForm;
   @ViewChild('selectComponent') select;
   title = '';
-  customer: any = '';
+  customer: Customer = new Customer();
   formValidator: FormGroup;
   statuses = [
     {id: 1, text: 'ACTIVE'},
@@ -23,9 +24,11 @@ export class FormCustomersComponent implements OnInit {
     {id: 4, text: 'SUSPENDED'}
   ]
   selectedStatus = 1;
+
   constructor(private activateRoute: ActivatedRoute, private service: CustomerService, private form: FormBuilder) {
     this.title = this.activateRoute.snapshot.data.title;
     if (this.activateRoute.snapshot.queryParams.id) {
+      this.title = 'Atualizar Cliente';
       this.service.findCustomer(this.activateRoute.snapshot.queryParams.id).subscribe( (x: any) => {
         this.customer = x.data;
         this.selectedStatus = this.customer.status;
@@ -51,7 +54,6 @@ export class FormCustomersComponent implements OnInit {
 
   changeDate(event: any) {
     this.customer.birthdate = new Date(event._inputValue);
-
   }
 
   resetForm() {
