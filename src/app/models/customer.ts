@@ -6,11 +6,12 @@ export class Customer implements PersonInterface {
   addresses: Array<AddressInterface> = new Array<Address>();
   birthdate: Date;
   id: string;
-  name = '';
+  name: string;
   status: number;
 
 
   constructor() {
     this.addresses.push(new Address())
+    this.status = 1;
   }
 }

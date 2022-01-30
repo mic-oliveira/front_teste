@@ -3,6 +3,7 @@ import {ZipcodeSearchService} from '../../dataService/zipcode-search.service';
 import {BehaviorSubject} from 'rxjs';
 import {debounceTime, delay} from 'rxjs/operators';
 import {AddressInterface} from '../../interfaces/address-interface';
+import {Address} from '../../models/address';
 
 @Component({
   selector: 'app-address-form',
@@ -12,7 +13,8 @@ import {AddressInterface} from '../../interfaces/address-interface';
 export class AddressFormComponent implements OnInit {
   @Input() address: AddressInterface;
   addressInfo = new BehaviorSubject(null);
-  constructor(private zipcodeService: ZipcodeSearchService) { }
+  constructor(private zipcodeService: ZipcodeSearchService) {
+  }
 
   ngOnInit(): void {
     this.addressInfo.pipe(debounceTime(1000)).subscribe(nextval => {
