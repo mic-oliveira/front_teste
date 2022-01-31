@@ -34,18 +34,7 @@
               <input name="birthdate" class="form-control" placeholder="01/01/2000" [ngModel]="customer.birthdate" type="date" required>
             </div>
           </div>
-          <div class="col-12">
-            <ngb-accordion [closeOthers]="true" activeIds="static-1">
-              <ngb-panel id="static-1" >
-                <ng-template ngbPanelTitle>
-                  <span class="bold">{{'Address' | translate}}</span>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <app-address-form [address]="customer.addresses[0]" class="col-12 no-wrap"></app-address-form>
-                </ng-template>
-              </ngb-panel>
-            </ngb-accordion>
-          </div>
+          <app-address-form [address]="customer.addresses[0]" class="col-12 no-wrap"></app-address-form>
         </div>
         <div class="row">
 

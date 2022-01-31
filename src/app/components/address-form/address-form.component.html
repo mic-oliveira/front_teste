@@ -6,7 +6,7 @@
     </div>
     <div class="col-12 col-md-6">
       <label for="place">{{'Street'}}</label>
-      <input name="place" id="place" type="text" [ngModel]="address.public_place" class="form-control" />
+      <input name="place" id="place" type="text" [ngModel]="address.public_place | uppercase" class="form-control" />
     </div>
     <div class="col-12 col-md-2">
       <label for="number">{{'Number'}}</label>
@@ -14,13 +14,12 @@
     </div>
     <div class="col-12 col-md-4">
       <label for="neighborhood">{{'Neighborhood'}}</label>
-      <input name="neighborhood" id="neighborhood" type="text" [ngModel]="address.neighborhood" class="form-control" />
+      <input name="neighborhood" id="neighborhood" type="text" [ngModel]="address.neighborhood | uppercase" class="form-control" />
     </div>
     <div class="col-12 col-md-4">
       <label for="city">{{'City'}}</label>
-      <input name="city" id="city" type="text" [ngModel]="address.city" class="form-control" />
+      <ng-select id="city" name="city" [items]="cities | async" [ngModel]="address.city" bindLabel="name" bindValue="name"></ng-select>
     </div>
-
   </div>
 </form>
 
