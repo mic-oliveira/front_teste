@@ -27,7 +27,6 @@ export class CustomerService {
   }
 
   createOrUpdateCustomer(data: object, id?: string | number) {
-    console.log(data);
     return id ? this.updateCustomer(data, id) : this.createCustomer(data);
   }
 }

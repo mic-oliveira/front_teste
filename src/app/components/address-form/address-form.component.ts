@@ -20,11 +20,9 @@ export class AddressFormComponent implements OnInit {
   addressForm: FormGroup;
   cities;
   constructor(private zipcodeService: ZipcodeSearchService, private citiesService: CitiesService, public formBuilder: FormBuilder) {
-    // this.formValidator();
   }
 
   ngOnInit(): void {
-    console.log(this.address)
     this.loadZipcode();
     this.loadCities();
     this.formValidator();
@@ -67,10 +65,10 @@ export class AddressFormComponent implements OnInit {
       neighborhood: this.formBuilder.group({
         name: [this.address.neighborhood.name],
         city: this.formBuilder.group({
-          id: [this.address.neighborhood.city.id, Validators.required],
+          id: [this.address.neighborhood.city.id],
           name: [this.address.neighborhood.city.name],
         })
-      }, [Validators.required])
+      })
     })
   }
 

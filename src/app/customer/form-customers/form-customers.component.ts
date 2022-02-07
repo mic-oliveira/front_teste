@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CustomerService} from '../../dataService/customer.service';
-import {FormArray, FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {SweetAlert} from '../../shared/data/sweet-alert';
 import {Customer} from '../../models/customer';
 import {AddressInterface} from '../../interfaces/address-interface';
@@ -34,7 +34,11 @@ export class FormCustomersComponent implements OnInit {
       this.service.findCustomer(this.activateRoute.snapshot.queryParams.id).subscribe( (x: any) => {
         this.customer = x.data;
         this.selectedStatus = this.customer.status;
-      }, () => {}, () => {this.createForm()})
+      }, () => {}, () => {
+        this.createForm();
+        this.changeAddress(this.form.group({
+        }))
+      })
     }
   }
 
@@ -44,11 +48,9 @@ export class FormCustomersComponent implements OnInit {
 
 
   submitCustomer() {
-    console.log(this.customerForm.value)
     this.service.createOrUpdateCustomer(this.customerForm.value, this.customerForm.value.id ?? null).subscribe(x => {
       SweetAlert.success('Usuário criado com sucesso').then();
-    }, (error) => {
-      console.log(error)
+    }, () => {
       SweetAlert.error('Não foi possível atender solicitação.').then();
     })
   }
@@ -61,7 +63,7 @@ export class FormCustomersComponent implements OnInit {
     this.customerForm = this.form.group({
       id: [this.customer.id],
       name: [this.customer.name, Validators.required],
-      status: [this.customer.status],
+      status: [this.customer.status, Validators.required],
       birthdate: [this.customer.birthdate, Validators.required],
       addresses: this.form.array([], Validators.required)
     })
