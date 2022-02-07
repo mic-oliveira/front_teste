@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CustomerService} from '../../dataService/customer.service';
-import {FormBuilder, FormGroup, NgForm} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {SweetAlert} from '../../shared/data/sweet-alert';
 import {Customer} from '../../models/customer';
+import {AddressInterface} from '../../interfaces/address-interface';
+import {AddressFormComponent} from '../../components/address-form/address-form.component';
 
 @Component({
   selector: 'app-form-customers',
@@ -12,11 +14,11 @@ import {Customer} from '../../models/customer';
 })
 export class FormCustomersComponent implements OnInit {
   @ViewChild('badgeComponent') badgeComponent;
-  @ViewChild('customerForm') customerForm: NgForm;
+  @ViewChild('addressFormComponent', {read: AddressFormComponent}) addressForm;
   @ViewChild('selectComponent') select;
   title = '';
   customer: Customer = new Customer();
-  formValidator: FormGroup;
+  customerForm: FormGroup;
   statuses = [
     {id: 1, text: 'ACTIVE'},
     {id: 2, text: 'INACTIVE'},
@@ -32,19 +34,18 @@ export class FormCustomersComponent implements OnInit {
       this.service.findCustomer(this.activateRoute.snapshot.queryParams.id).subscribe( (x: any) => {
         this.customer = x.data;
         this.selectedStatus = this.customer.status;
-      })
+      }, () => {}, () => {this.createForm()})
     }
   }
 
   ngOnInit(): void {
+    this.createForm();
   }
 
 
-  submitCustomer(formControl) {
-    console.log(formControl.value);
-    console.log(this.customer);
-
-    this.service.createOrUpdateCustomer(formControl.value, this.customer.id ?? null).subscribe(x => {
+  submitCustomer() {
+    console.log(this.customerForm.value)
+    this.service.createOrUpdateCustomer(this.customerForm.value, this.customerForm.value.id ?? null).subscribe(x => {
       SweetAlert.success('Usuário criado com sucesso').then();
     }, (error) => {
       console.log(error)
@@ -56,8 +57,26 @@ export class FormCustomersComponent implements OnInit {
     this.customer.birthdate = new Date(event._inputValue);
   }
 
+  createForm() {
+    this.customerForm = this.form.group({
+      id: [this.customer.id],
+      name: [this.customer.name, Validators.required],
+      status: [this.customer.status],
+      birthdate: [this.customer.birthdate, Validators.required],
+      addresses: this.form.array([], Validators.required)
+    })
+  }
+
   resetForm() {
+    this.addressForm.address = this.customer.addresses[0];
     this.customerForm.reset(this.customer)
     this.selectedStatus = this.customer.status
+
+  }
+
+  changeAddress(addressForm: FormGroup) {
+    const address = <FormArray>this.customerForm.controls['addresses'];
+    address.clear();
+    address.push(addressForm);
   }
 }

@@ -11,7 +11,8 @@ export class Customer implements PersonInterface {
 
 
   constructor() {
-    this.addresses.push(new Address())
+    this.name = '';
+    this.addresses.push(new Address());
     this.status = 1;
   }
 }

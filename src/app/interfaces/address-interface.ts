@@ -1,12 +1,11 @@
+import {Neighborhood} from '../models/neighborhood';
+
 export interface AddressInterface {
-  id?: string;
+  id?: any;
   address_type?;
-  city?;
   complement?;
-  neighborhood?;
-  neighborhood_id?: number;
+  neighborhood: Neighborhood;
   number?;
   public_place?;
-  state?;
   zipcode?;
 }
