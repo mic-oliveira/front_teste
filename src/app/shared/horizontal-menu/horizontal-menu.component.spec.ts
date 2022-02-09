@@ -1,6 +1,18 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { HorizontalMenuComponent } from './horizontal-menu.component';
+import {HorizontalMenuComponent} from './horizontal-menu.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {
+  MissingTranslationHandler,
+  TranslateCompiler,
+  TranslateFakeLoader, TranslateLoader,
+  TranslateModule,
+  TranslateParser, TranslatePipe,
+  TranslateService,
+  TranslateStore
+} from '@ngx-translate/core';
+import {InjectionToken} from '@angular/core';
 
 describe('HorizontalMenuComponent', () => {
   let component: HorizontalMenuComponent;
@@ -8,7 +20,25 @@ describe('HorizontalMenuComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HorizontalMenuComponent ]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: TranslateFakeLoader,
+          compiler: TranslateFakeLoader,
+          defaultLanguage: 'en-US'
+        })
+      ],
+      declarations: [ HorizontalMenuComponent ],
+      providers: [
+        TranslatePipe,
+        TranslateService,
+        TranslateLoader,
+        TranslateStore,
+        TranslateCompiler,
+        TranslateParser,
+        MissingTranslationHandler,
+      ]
     })
     .compileComponents();
   }));

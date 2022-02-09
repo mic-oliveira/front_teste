@@ -36,8 +36,6 @@ export class FormCustomersComponent implements OnInit {
         this.selectedStatus = this.customer.status;
       }, () => {}, () => {
         this.createForm();
-        this.changeAddress(this.form.group({
-        }))
       })
     }
   }
@@ -51,6 +49,7 @@ export class FormCustomersComponent implements OnInit {
     this.service.createOrUpdateCustomer(this.customerForm.value, this.customerForm.value.id ?? null).subscribe(x => {
       SweetAlert.success('Usuário criado com sucesso').then();
     }, () => {
+      console.log(this.customerForm.value)
       SweetAlert.error('Não foi possível atender solicitação.').then();
     })
   }

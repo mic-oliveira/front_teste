@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddressFormComponent } from './address-form.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 describe('AddressFormComponent', () => {
   let component: AddressFormComponent;
@@ -8,7 +11,11 @@ describe('AddressFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddressFormComponent ]
+      imports: [HttpClientTestingModule],
+      declarations: [ AddressFormComponent ],
+      providers: [
+        FormBuilder
+      ]
     })
     .compileComponents();
   });

@@ -21,7 +21,6 @@
               [clearable]="false"
               (change)="selectedStatus = selectComponent.selectedValues[0].id"
               #selectComponent
-              name="status"
               bindLabel="text"
               bindValue="id"
               required
@@ -36,12 +35,9 @@
           </div>
           <app-address-form [address]="customer.addresses[0]" (output)="changeAddress($event)" class="col-12 no-wrap" #addressFormComponent formArrayName="addresses"></app-address-form>
         </div>
-        <div class="row">
-
-        </div>
-        <div class="row">
+        <div class="row mt-2">
           <div class="form-group col-12">
-            <button class="btn btn-success mr-2" type="submit" [disabled]="customerForm.invalid"><i class="ft-save"></i> {{'Save' | translate}}</button>
+            <button class="btn btn-success mr-2" type="submit" [disabled]="customerForm.invalid || customerForm.pristine"><i class="ft-save"></i> {{'Save' | translate}}</button>
             <button class="btn btn-info" type="button" (click)="resetForm()">{{'Cancel' | translate}}</button>
           </div>
         </div>

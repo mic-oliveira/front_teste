@@ -12,12 +12,12 @@
       <label for="number">{{'Number'}}</label>
       <input name="number" id="number" type="text" class="form-control" [ngClass]="{'is-invalid': addressForm.controls['number'].invalid && addressForm.controls['number'].dirty}" formControlName="number" />
     </div>
-    <div class="row col-12" formGroupName="neighborhood">
-      <div class="col-12 col-md-4" >
+    <div class="row col-12" formGroupName="neighborhood" style="padding: 0; margin: 0">
+      <div class="col-12 col-md-3" >
         <label for="neighborhood">{{'Neighborhood'}}</label>
         <input name="neighborhood" id="neighborhood" type="text" class="form-control" formControlName="name" />
       </div>
-      <div class="col-12 col-md-4" formGroupName="city">
+      <div class="col-12 col-md-3" formGroupName="city">
         <label for="city">{{'City'}}</label>
         <ng-select id="city" formControlName="name">
           <ng-option *ngFor="let city of cities" [value]="city.id">{{city.name | uppercase}}</ng-option>
