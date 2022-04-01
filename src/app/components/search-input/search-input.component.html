@@ -1,9 +1,10 @@
 <div class="row justify-content-between">
-  <div class="form-group col-12 col-md-10">
-    <input class="form-control" placeholder="{{'Type name or some document' | translate}}">
+  <div class="form-group col-12 col-md-10 d-flex justify-content-between">
+    <input class="form-control col-12 col-md-10" placeholder="Nome do vendedor"/>
+    <input class="form-control col-12 col-md-2 ml-1" type="date"/>
   </div>
   <div class="col-12 col-md">
-    <button class="btn btn-primary col-12">{{'Search' | translate}}</button>
+    <button class="btn btn-primary col-12">Procurar</button>
   </div>
   <div>
     <button class="btn btn-primary col-12" [routerLink]="buttonRoute"><i class="ft-user-plus"></i></button>

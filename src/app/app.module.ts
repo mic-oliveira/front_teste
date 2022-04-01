@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AngularFireModule} from '@angular/fire';
@@ -21,6 +21,11 @@ import {FullLayoutComponent} from './layouts/full/full-layout.component';
 import {AuthService} from './shared/auth/auth.service';
 import {AuthGuard} from './shared/auth/auth-guard.service';
 import {WINDOW_PROVIDERS} from './shared/services/window.service';
+import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule, registerLocaleData} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {OpportunityPageModule} from './pages/opportunity-page/opportunity-page.module';
+import localePt from '@angular/common/locales/pt';
 
 const firebaseConfig = {
   apiKey: 'YOUR_API_KEY', // YOUR_API_KEY
@@ -32,6 +37,8 @@ const firebaseConfig = {
   appId: 'YOUR_APP_ID', // YOUR_APP_ID
   measurementId: 'YOUR_MEASUREMENT_ID' // YOUR_MEASUREMENT_ID
 };
+
+registerLocaleData(localePt, 'pt');
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -53,6 +60,9 @@ export function createTranslateLoader(http: HttpClient) {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     NgbModule,
+    BrowserModule,
+    CommonModule,
+    FormsModule,
     NgxSpinnerModule,
     TranslateModule.forRoot({
       loader: {
@@ -61,15 +71,19 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    OpportunityPageModule,
   ],
   providers: [
     AuthService,
     AuthGuard,
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    {provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG},
     WINDOW_PROVIDERS,
     TranslatePipe,
-    TranslateService
+    TranslateService,
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

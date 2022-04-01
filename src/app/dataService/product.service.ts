@@ -5,12 +5,12 @@ import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class OpportunitiesService {
+export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  listOpportunities(seller_name?: string) {
-    return this.http.get(`${environment.url}/opportunities?filter[seller_name]=${seller_name ?? ''}`,
+  listProducts() {
+    return this.http.get(`${environment.url}/products`,
       { headers: new HttpHeaders().set('authorization', `Bearer ${localStorage.getItem('token')}`)});
   }
 }

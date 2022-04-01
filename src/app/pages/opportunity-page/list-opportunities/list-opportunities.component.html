@@ -1,1 +1,40 @@
-<p>list-opportunities works!</p>
+<app-create-opportunity-modal></app-create-opportunity-modal>
+<div class="row justify-content-between">
+  <div class="form-group col-12 col-md-10 d-md-flex justify-content-md-between">
+    <input class="form-control col-12 col-md-10" placeholder="Nome do vendedor" #name/>
+    <input class="form-control col-12 col-md-2 ml-md-1 mt-1 mt-md-0" type="date"/>
+  </div>
+  <div class="col-12 col-md">
+    <button class="btn btn-primary col-12" (click)="searchSeller(name.valueOf())">Procurar</button>
+  </div>
+  <div>
+    <button class="btn btn-primary col-12"><i class="ft-user-plus"></i></button>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>Vendedor</th>
+      <th>Status</th>
+      <th>Data de criação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let opportunity of opportunities">
+      <th scope="row">{{opportunity.id}}</th>
+      <td>{{opportunity.customer_name}}</td>
+      <td>{{opportunity.seller_name}}</td>
+      <td [ngSwitch]="opportunity.status">
+        <p *ngSwitchCase="'1'" class="badge badge-pill badge-secondary">Pendente</p>
+        <p *ngSwitchCase="'2'" class="badge badge-pill badge-success">Aprovado</p>
+        <p *ngSwitchCase="'3'" class="badge badge-pill badge-warning">Reprovado</p>
+      </td>
+      <td>{{opportunity.created_at | date: 'dd/MM/YYYY'}}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
