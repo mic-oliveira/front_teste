@@ -5,11 +5,11 @@ import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CitiesService {
+export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  list() {
-    return this.http.get(`${environment.url}/cities`)
+  authenticate(email: string, password: string) {
+    return this.http.post(`${environment.url}/auth`, {email: email, password: password}).toPromise();
   }
 }

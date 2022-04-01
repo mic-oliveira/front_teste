@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  url: 'http://customers.dominus/api/v1'
+  url: 'http://localhost:8085/api'
 };

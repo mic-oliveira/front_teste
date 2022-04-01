@@ -1,33 +1,26 @@
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {TranslateModule, TranslateLoader, TranslatePipe, TranslateService} from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule, TranslatePipe, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
-import {
-  PerfectScrollbarModule,
-  PERFECT_SCROLLBAR_CONFIG,
-  PerfectScrollbarConfigInterface
-} from 'ngx-perfect-scrollbar';
+import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 
-import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared.module';
-import { AppComponent } from './app.component';
-import { ContentLayoutComponent } from './layouts/content/content-layout.component';
-import { FullLayoutComponent } from './layouts/full/full-layout.component';
+import {AppRoutingModule} from './app-routing.module';
+import {SharedModule} from './shared/shared.module';
+import {AppComponent} from './app.component';
+import {ContentLayoutComponent} from './layouts/content/content-layout.component';
+import {FullLayoutComponent} from './layouts/full/full-layout.component';
 
-import { AuthService } from './shared/auth/auth.service';
-import { AuthGuard } from './shared/auth/auth-guard.service';
-import { WINDOW_PROVIDERS } from './shared/services/window.service';
-import { DataTableComponent } from './components/data-table/data-table.component';
-import { CustomerFormComponent } from './components/customer-form/customer-form.component';
-import { AddressFormComponent } from './components/address-form/address-form.component';
+import {AuthService} from './shared/auth/auth.service';
+import {AuthGuard} from './shared/auth/auth-guard.service';
+import {WINDOW_PROVIDERS} from './shared/services/window.service';
 
 const firebaseConfig = {
   apiKey: 'YOUR_API_KEY', // YOUR_API_KEY
