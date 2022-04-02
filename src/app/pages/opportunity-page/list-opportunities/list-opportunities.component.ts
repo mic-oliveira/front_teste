@@ -40,21 +40,25 @@ export class ListOpportunitiesComponent implements OnInit, OnDestroy {
 
   approveOpportunity(opportunity) {
     SweetAlert.confirm('Deseja aprovar esta oportunidade?', null, 'SIM', 'Não').then(r => {
-      this.service.approveOpportunity(opportunity).toPromise().then(() => {
-        SweetAlert.success('Oportunidade aprovada.').then(() => {
-          this.search();
+      if (r.isConfirmed) {
+        this.service.approveOpportunity(opportunity).toPromise().then(() => {
+          SweetAlert.success('Oportunidade aprovada.').then(() => {
+            this.search();
+          })
         })
-      })
+      }
     })
   }
 
   refuseOpportunity(opportunity) {
     SweetAlert.confirm('Deseja reprovar esta oportunidade?', null, 'SIM', 'Não').then(r => {
-      this.service.refuseOpportunity(opportunity).toPromise().then(() => {
-        SweetAlert.error('Oportunidade reprovada.').then(() => {
-          this.search();
+      if (r.isConfirmed) {
+        this.service.refuseOpportunity(opportunity).toPromise().then(() => {
+          SweetAlert.error('Oportunidade reprovada.').then(() => {
+            this.search();
+          })
         })
-      })
+      }
     })
   }
 
