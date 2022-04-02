@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerService} from '../../dataService/customer.service';
 import {ProductService} from '../../dataService/product.service';
+import {OpportunitiesService} from '../../dataService/opportunities.service';
 
 @Component({
   selector: 'app-create-opportunity-modal',
@@ -11,9 +12,13 @@ import {ProductService} from '../../dataService/product.service';
 export class CreateOpportunityModalComponent implements OnInit, OnDestroy {
   closeResult = '';
   customers = null;
-  products = null
+  products = null;
+  customerId = 0;
+  productId = 0;
+  @Output() output = new EventEmitter();
 
-  constructor(private modalService: NgbModal, private customerService: CustomerService, private productService: ProductService) {}
+  constructor(private modalService: NgbModal, private customerService: CustomerService, private productService: ProductService,
+              private opportunityService: OpportunitiesService) {}
 
   ngOnInit() {
     this.listCustomers();
@@ -37,21 +42,15 @@ export class CreateOpportunityModalComponent implements OnInit, OnDestroy {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  save() {
+    console.log(this.customerId, this.productId)
+    this.opportunityService.storeOpportunity(this.customerId, this.productId).toPromise().then(() => {
+      this.output.emit();
+      this.modalService.dismissAll();
+    })
   }
-
-  save() {}
 }

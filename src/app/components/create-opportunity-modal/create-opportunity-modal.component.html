@@ -4,28 +4,27 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #form='ngForm'>
       <div class="form-group">
         <label for="customers">Cliente</label>
-        <select class="form-control" id="customers">
+        <select class="form-control" id="customers" [(ngModel)]="customerId" [ngModelOptions]="{standalone: true}" required>
+          <option selected="selected" value="0">SELECIONE UM CLIENTE</option>
           <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="products">Cliente</label>
-        <select class="form-control" id="products">
+        <label for="products">Produto</label>
+        <select class="form-control" id="products" [(ngModel)]="productId" [ngModelOptions]="{standalone: true}" required>
+          <option [selected]="productId==0" value="0">SELECIONE UM PRODUTO</option>
           <option *ngFor="let product of products" [value]="product.id">{{product.name}} || {{product.price / 100 | currency: 'R$':true}}</option>
         </select>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="save()" [disabled]="customerId==0 || productId == 0">Salvar</button>
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+<button class="btn btn-primary col-12 col-md" (click)="open(content)" placement="top" ngbTooltip="Criar oportunidade"><i class="ft-user-plus"></i></button>
 
-<hr>
-
-<pre>{{ closeResult }}</pre>

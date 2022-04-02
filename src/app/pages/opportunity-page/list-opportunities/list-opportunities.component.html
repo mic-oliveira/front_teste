@@ -1,17 +1,18 @@
-<app-create-opportunity-modal></app-create-opportunity-modal>
 <div class="row justify-content-between">
   <div class="form-group col-12 col-md-10 d-md-flex justify-content-md-between">
-    <input class="form-control col-12 col-md-10" placeholder="Nome do vendedor" #name/>
-    <input class="form-control col-12 col-md-2 ml-md-1 mt-1 mt-md-0" type="date"/>
+    <input class="form-control col-12 col-md-10" placeholder="Nome do vendedor" name="seller_name" [(ngModel)]="seller_name"/>
+    <input class="form-control col-12 col-md-2 ml-md-1 mt-1 mt-md-0" name="start_date" [(ngModel)]="start_date" type="date" #date/>
   </div>
   <div class="col-12 col-md">
-    <button class="btn btn-primary col-12" (click)="searchSeller(name.valueOf())">Procurar</button>
+    <button class="btn btn-primary col-12" (click)="search()">Procurar</button>
   </div>
   <div>
-    <button class="btn btn-primary col-12"><i class="ft-user-plus"></i></button>
+    <app-create-opportunity-modal (output)="search()"></app-create-opportunity-modal>
+    <!--<button class="btn btn-primary col-12"><i class="ft-user-plus"></i></button>-->
   </div>
 </div>
-<table class="table">
+
+<table class="table table-responsive-sm">
   <thead>
     <tr>
       <th>#</th>
@@ -19,6 +20,7 @@
       <th>Vendedor</th>
       <th>Status</th>
       <th>Data de criação</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -32,6 +34,10 @@
         <p *ngSwitchCase="'3'" class="badge badge-pill badge-warning">Reprovado</p>
       </td>
       <td>{{opportunity.created_at | date: 'dd/MM/YYYY'}}</td>
+      <td>
+        <i class="btn btn-success ft ft-check mr-md-2" (click)="approveOpportunity(opportunity.id)"></i>
+        <i class="btn btn-danger ft ft-x" (click)="refuseOpportunity(opportunity.id)"></i>
+      </td>
     </tr>
 
   </tbody>
